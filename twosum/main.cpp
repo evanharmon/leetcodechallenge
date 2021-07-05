@@ -1,26 +1,18 @@
 #include <iostream>
 #include <vector>
 
+// COMMENTS
+//
+// 1. iterate through vector of int values, incrementing vector index value
+//   a. 1. skip first vector int value as two ints are required for checking sum in this challenge
+//   a. 2. inner loop to compare current int value to previous int values in vector
+//   a. 2. a. return early if sum equals target sum
 std::vector<int> twoSum(std::vector<int> nums, int target) {
-    auto prev = 0;
-    auto sum = 0;
-    auto m = 0;
-    for (auto it = nums.begin(); it != nums.end(); ++it, ++m) {
+    // bleh, o(N^2) ?
+    for (auto m = 1; m != nums.size(); ++m) {
         auto n = 0;
-        auto mVal = *it;
-        std::cout << "m index " << m << " val " << mVal << " n index " << n << std::endl;
-        if (m != 0) {
-            for (auto jt = 0; n < m; ++n) {
-                auto nVal = nums.at(n);
-                std::cout << "inner loop" << " m idx " << m << " m val " << mVal << " n idx " << n << " n val " << nVal << std::endl;
-                if (m != n) {
-                    auto totes = mVal + nVal;
-                    std::cout << "totes " << totes << std::endl;
-                    if (totes == target) {
-                        return {m,n};
-                    }
-                }
-            }
+        for (auto jt = 0; n < m; ++n) {
+            if ((nums[m] + nums.at(n)) == target) return {n,m};
         }
     }
 
@@ -28,19 +20,24 @@ std::vector<int> twoSum(std::vector<int> nums, int target) {
 }
 
 int main() {
+    // VARIOUS TEST CASES
+    //
     // nums = [2,7,11,15], target = 9
+
     /* std::vector<int> nums = {3,2,3}; */
+    /* std::cout << "result should be [0,2]" << std::endl; */
+    /* auto target = 6; */
+
     /* std::vector<int> nums = {3,2,4}; */
+    /* std::cout << "result should be [1,2]" << std::endl; */
+    /* auto target = 6; */
+
     std::vector<int> nums = {2,7,11,15};
-    for (auto num : nums) {
-        std::cout << " num " << num << std::endl;
-    }
-
-    /* auto target = 6; */
-    /* auto target = 6; */
+    std::cout << "result should be [0,1]" << std::endl;
     auto target = 9;
-    std::cout << " target " << target << std::endl;
 
+    // challenge function
+    // similar to othet leetCode challenges, the actual function signature makes testing difficult
     auto result = twoSum(nums, target);
     for (auto r : result) {
         std::cout << "vector " << r << std::endl;
