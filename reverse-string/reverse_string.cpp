@@ -4,6 +4,9 @@
 #include <string>
 #include <vector>
 
+// Comments
+// loop thru string of chars to build vector of chars o(n)
+// use container iterator to reverse through chars to build string o(n)
 namespace reverse_string {
     std::string reverse_string(std::string str) {
         std::vector<char> val;
